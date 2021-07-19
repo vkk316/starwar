@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:starwar/starwar_list.dart';
+import 'package:starwar/starwars_list.dart';
 
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('Starwar'),
           ),
-          body: StarwarList(),
+          body: StarwarsList(),
         ));
   }
 }
