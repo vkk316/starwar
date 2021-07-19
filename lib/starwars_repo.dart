@@ -8,12 +8,18 @@ class People {
   final String birthYear;
   final String gender;
   final List films;
-  People(
-      this.name, this.url, this.height, this.mass, this.birthYear, this.gender,this.films);
+  People(this.name, this.url, this.height, this.mass,
+      this.birthYear, this.gender, this.films);
 
   factory People.fromJson(dynamic data) {
-    return People(data['name'], data['url'], int.parse(data['height']),
-        int.parse(data['mass']), data['birth_year'], data['gender'], data['films']);
+    return People(
+        data['name'],
+        data['url'],
+        int.parse(data['height']),
+        int.parse(data['mass']),
+        data['birth_year'],
+        data['gender'],
+        data['films']);
   }
 }
 
