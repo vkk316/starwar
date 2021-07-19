@@ -36,7 +36,7 @@ class _StarwarsListState extends State<StarwarsList> {
         padding: const EdgeInsets.all(8),
         itemCount: _people.length,
         itemBuilder: (BuildContext context, int index) {
-          final title = _people[index].name;
+          final data = _people[index];
           return Card(
             elevation: 2,
             shape: RoundedRectangleBorder(
@@ -47,14 +47,14 @@ class _StarwarsListState extends State<StarwarsList> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
                   return DetailPage(
-                    title: title,
+                    people: data,
                   );
                 }));
               },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
-              title: Text(title),
+              title: Text(data.name),
             ),
           );
         });
@@ -62,20 +62,20 @@ class _StarwarsListState extends State<StarwarsList> {
 }
 
 class DetailPage extends StatelessWidget {
-  DetailPage({Key? key, this.title}) : super(key: key);
+  DetailPage({Key? key, this.people}) : super(key: key);
 
-  final String? title;
+  final People? people;
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
     slivers: <Widget>[
       SliverAppBar(
         pinned: true,
-        title: Text(title!),
+        title: Text(people!.name),
         backgroundColor: Theme.of(context).accentColor,
         expandedHeight: MediaQuery.of(context).size.height * (6/8),
         flexibleSpace: FlexibleSpaceBar(
-          background:FittedBox(fit: BoxFit.cover,child: Image.network('https://starwars-visualguide.com/assets/img/characters/1.jpg'))),
+          background:FittedBox(fit: BoxFit.cover,child: Image.network('https://starwars-visualguide.com/assets/img/characters/${people!.url.splitMapJoin(RegExp('[0-9]'), onNonMatch: (str)=> '')}.jpg'))),
         ),
       SliverFixedExtentList(
         itemExtent: 150.0,
