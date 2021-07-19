@@ -68,7 +68,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-    slivers: <Widget>[
+    slivers:[
       SliverAppBar(
         pinned: true,
         title: Text(people!.name),
@@ -77,15 +77,13 @@ class DetailPage extends StatelessWidget {
         flexibleSpace: FlexibleSpaceBar(
           background:FittedBox(fit: BoxFit.cover,child: Image.network('https://starwars-visualguide.com/assets/img/characters/${people!.url.splitMapJoin(RegExp('[0-9]'), onNonMatch: (str)=> '')}.jpg'))),
         ),
-      SliverFixedExtentList(
-        itemExtent: 150.0,
-        delegate: SliverChildListDelegate(
+        SliverList(delegate: SliverChildListDelegate(
           [
+            Container(height: 220,color: Colors.red),
+            Container(height: 30,color: Colors.greenAccent),
             Container(color: Colors.red),
-
           ],
-        ),
-      ),
+        ),)
     ],
 );
   }
